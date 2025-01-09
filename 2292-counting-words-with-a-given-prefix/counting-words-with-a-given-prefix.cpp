@@ -7,10 +7,12 @@ class Solution {
         if(len2 > len1){
             return false;
         }
-        if(word.substr(0,len2) == pre){
-            return true;
+        for(int i = 0; i < len2; i++){
+            if(word[i] != pre[i]){
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 public:
     int prefixCount(vector<string>& words, string pref) {
