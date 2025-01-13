@@ -1,29 +1,16 @@
 class Solution {
 public:
     int minimumLength(string s) {
-        if(s.size() < 3){
-            return s.size();
+        int freq[26] = {0};
+        for (char& c : s) {
+            freq[c - 'a']++;
         }
-
-
-        unordered_map<int, int> mpp;
-
-        for(char c : s){
-            mpp[c]++;
-        }
-        int lenght =0;
-        for(auto& i : mpp)
-        {
-            if(i.second < 3 ){
-                lenght = lenght + i.second;
-            }
-            else if(i.second % 2 == 0){
-                lenght = lenght + 2;
-            }
-            else{
-                lenght = lenght + 1;
+        int ans = 0;
+        for (int x : freq) {
+            if (x) {
+                ans += x % 2 ? 1 : 2;
             }
         }
-        return lenght;
+        return ans;
     }
 };
