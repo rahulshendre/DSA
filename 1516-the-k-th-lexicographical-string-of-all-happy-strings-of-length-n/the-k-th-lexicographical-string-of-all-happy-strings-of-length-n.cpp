@@ -1,25 +1,35 @@
-class Solution {
-    void generateHappyStrings(int n, string current, vector<string> &happyStrings){
-        if(current.length() == n){
-            happyStrings.push_back(current);
-            return;
-        }
 
-        for(char ch : {'a', 'b', 'c'}){
-            if(current.empty() || current.back() != ch){
-                generateHappyStrings(n, current + ch, happyStrings);
+class Solution {
+public:
+    vector<string> ans;
+    void backtrack( int n,string curr,vector<char> &v,int k)
+    {
+        if(ans.size()==k)
+            return ;
+        if(curr.size()==n)
+        {
+            ans.push_back(curr);
+                return;
+        }
+        for(int i=0;i<3;i++)
+        {
+            if(curr.size()==0||curr[curr.size()-1]!=v[i])
+            {
+                curr+=v[i];
+                backtrack(n,curr,v,k);
+                curr.pop_back();
             }
         }
     }
-public:
-    string getHappyString(int n, int k) {
-        vector<string> happyStrings;
-        generateHappyStrings(n, "", happyStrings);
-
-        if(k > happyStrings.size()){
+    string getHappyString(int n, int k) 
+    {
+        vector<char> v={'a','b','c'};
+        backtrack(n,"",v,k);
+        if(ans.size()==k)
+            return ans.back();
+        else
             return "";
-        }      
-
-        return happyStrings[k-1];
+        
+        
     }
 };
