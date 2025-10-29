@@ -14,18 +14,18 @@ public:
         int right = n;
 
         while(left <= right){
-            int mid = left + ( right - left) / 2;
+            int mid = left + (right - left) /2;
 
             int a = guess(mid);
-            if(a == - 1){
-                right = mid -1;
-            }
-            else if(a == 1){
-                left = mid + 1;
-            }
-            else{
-                return mid;
-            }
+                if(a == - 1){
+                    right = mid - 1;
+                }
+                else if( a == 1){
+                    left = mid + 1;
+                }
+                else{
+                    return mid;
+                }
             
         }
         return n;
